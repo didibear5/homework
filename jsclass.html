@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Page Title</title>
+</head>
+<body>
+	<script type="text/javascript">
+		// 1
+		size = 20;
+		answer = "";
+		for(var i=0; i<size; i++) {
+			for(var j=0;j<size; j++){
+				if((i+j) % 2 == 0) {
+					answer += " ";
+				}
+				else {
+					answer += "#";
+				}
+			}
+			answer += "\n";
+		}
+		console.log(answer);
+
+		// 2
+		var array1 = [2, 3, 5, 7, 11]; 
+		var array2 = [1, 4, 12];
+		var array3 = [];
+		var array1Length = array1.length;
+		var array2Length = array2.length;
+		var totalLength = array1Length + array2Length;
+		var array1Index = 0, array2Index = 0;
+		for(var i = 0; i < totalLength; i++) {
+			if (array1Index == array1Length) {
+				array3.push(array2[array2Index++]);
+			}
+			else if (array2Index == array2Length) {
+				array3.push(array1[array1Index++]);
+			}
+			else if (array1[array1Index] > array2[array2Index]){
+				array3.push(array2[array2Index++]);
+			}
+			else if (array1[array1Index] < array2[array2Index]){
+				array3.push(array1[array1Index++]);
+			}
+		}
+
+		if (totalLength % 2 == 0){
+			console.log((array3[totalLength / 2 - 1] + array3[totalLength / 2]) / 2);
+		}
+		else{
+			console.log(array3[(totalLength - 1) / 2]);
+		}
+		// 3
+		var arrayx = [2, 17, 7, 15];
+		var target = 9;
+		var arrayAns = [];
+		var arrayxLength = arrayx.length;
+		for(var i = 0; i < arrayxLength; i++) {
+			for(var j = i + 1; j < arrayxLength; j++) {
+				if((arrayx[i]+arrayx[j]) == target ){
+					arrayAns.push(i,j);
+				}	
+			}
+			
+		}
+		console.log(arrayAns);
+
+		//4
+		var s = "fgyjkdds";
+		function find(s){
+			if(s == ""){
+				return 0;
+			}
+			var i, sLength = s.length, currentLength = 1, maxLength = 1 ,site;
+			for(i = 1; i < sLength; i++){
+				site = s.substr(i - currentLength, currentLength).indexOf(s.substr(i , 1));
+				if(site == -1){
+					currentLength++;
+				}
+				else{
+					currentLength -= site;
+				}
+				if(maxLength < currentLength){
+					maxLength = currentLength;
+				}
+			}
+			return maxLength;
+		}
+		console.log(find(s));
+
+		//5
+		function mimi(num){
+			function meow(nownum, ans){
+				if(nownum == num){
+					return ans;
+				}
+				else if(nownum > num){
+					return null;
+				}
+				else {
+					return meow(nownum + 5, "("+ans+"+5)")||meow(nownum * 3, "("+ans+"*3)");
+				}
+			}
+			return meow(1,"1");
+		}
+		console.log(mimi(35));
+	</script>
+</body>
+</html>
